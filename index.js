@@ -36,15 +36,21 @@ app.post("/webhook", async (req, res) => {
     const from = msg.from;
     const pid = change.metadata.phone_number_id;
 
-    // USER TYPES HI
+    // HI MESSAGE
     if (msg.type === "text") {
       const text = msg.text.body.toLowerCase().trim();
 
-      if (text === "hi" || text === "hello") {
+      if (text === "hi") {
+        await sendText(
+          pid,
+          from,
+          "Hi, Welcome to Levitate Solutions"
+        );
+
         await sendButtons(
           pid,
           from,
-          "Welcome! Click below to receive OTP",
+          "Click below to receive OTP",
           [
             {
               type: "reply",
